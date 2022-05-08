@@ -1,0 +1,2 @@
+# quickxor
+Compute quickxor checksum

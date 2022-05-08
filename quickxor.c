@@ -50,10 +50,14 @@ int main(int argc, const char *const argv[]) {
     } else {
         for (i = 1; i < argc; ++i) {
             if (0 <= (fd = open(argv[i], O_RDONLY))) {
-                if (quickxor(fd))
+                if (quickxor(fd)) {
                     puts(argv[i]);
-                else
+                    if (close(fd))
+                        perror(argv[i]);
+                } else {
                     perror(argv[i]);
+                    close(fd);
+                }
             } else {
                 perror(argv[i]);
             }

@@ -16,12 +16,13 @@ int quickxor(int fd) {
     BYTE block[20];
 
     memset(block, 0, sizeof(block));
-    while (count = read(fd, buf, sizeof(buf))) {
-        if (count < 0)
+    while ((count = read(fd, buf, sizeof(buf)))) {
+        if (count < 0) {
             if (errno == EAGAIN || errno == EWOULDBLOCK)
                 continue;
             else
                 return 0;
+        }
         for (i = 0; i < count; ++i) {
             BYTE c = buf[i];
             bytes = shift / 8;

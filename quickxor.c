@@ -43,6 +43,7 @@ int quickxor(int fd) {
 
 int main(int argc, const char *const argv[]) {
     int i, fd;
+    setlinebuf(stdout);
     if (argc <= 1) {
         if (quickxor(STDIN_FILENO))
             puts("-");
